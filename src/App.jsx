@@ -6,6 +6,7 @@ import TodayHighlights from "./components/TodayHighlights";
 import FiveDayForecast from "./components/FiveDayForecast";
 import HourlyWeather from "./components/HourlyWeather";
 import axios from "axios";
+
 import {
   Dialog,
   DialogActions,
@@ -14,6 +15,7 @@ import {
   DialogTitle,
   Button,
 } from "@mui/material"; // Material UI Dialog
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -22,6 +24,7 @@ function App() {
   const [fiveDayForecast, setFiveDayForecast] = useState(null);
   const [errorMessage, setErrorMessage] = useState(""); // Error message state
   const [openErrorPopup, setOpenErrorPopup] = useState(false); // State to control error popup visibility
+  const [hourlyData, setHourlyData] = useState([]);
 
   useEffect(() => {
     fetchWeatherData(city);
@@ -72,6 +75,7 @@ function App() {
         setErrorMessage(error.message); // Set error message
         setOpenErrorPopup(true); // Show error popup
       });
+     
   };
 
   const fetchWeatherByCoords = (lat, lon) => {
@@ -148,29 +152,61 @@ function App() {
         onClose={handleClosePopup}
         aria-labelledby="error-dialog-title"
         aria-describedby="error-dialog-description"
+        PaperProps={{
+          style: {
+            backgroundColor: "#fff1f0", // Light red background to indicate error
+            borderRadius: "12px", // Rounded corners
+            padding: "20px", // Padding for content
+            minWidth: "500px", // Maximum width of the dialog
+          },
+        }}
       >
-        <DialogTitle id="error-dialog-title">Error</DialogTitle>
+        <DialogTitle
+          id="error-dialog-title"
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          display="flex"
+          justifyContent="center"
+        >
+          <ErrorOutlineIcon style={{ color: "#ff4d4f", fontSize: "32px" }} />{" "}
+          {/* Red error icon */}
+          <span style={{ color: "#ff4d4f" }}>Error</span>
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="error-dialog-description">
-            {errorMessage} {/* Display the error message */}
+          <DialogContentText
+            id="error-dialog-description"
+            style={{
+              color: "#595959",
+              fontSize: "25px",
+              margin: "10px 0",
+            }}
+          >
+            {errorMessage}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClosePopup} color="primary">
+        <DialogActions style={{ justifyContent: "center" }}>
+          <Button
+            onClick={handleClosePopup}
+            variant="contained"
+            style={{
+              backgroundColor: "#ff7875",
+              color: "white",
+              padding: "10px 20px",
+              borderRadius: "8px",
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#ff4d4f")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#ff7875")}
+          >
             Close
           </Button>
         </DialogActions>
       </Dialog>
 
       {weatherData && airQualityData && (
-        <div style={{ display: "flex", padding: "30px", gap: "20px" }}>
-          <div style={{ flex: "1", marginRight: "10px" }}>
+        <div style={{ display: "flex", padding: "10px", gap: "10px", }}>
+          <div style={{height:"86.5vh",width:"25vw" , marginRight: "10px" ,gap:"1rem" }}>
             <MainWeatherCard weatherData={weatherData} />
-            <p
-              style={{ fontWeight: "700", fontSize: "20px", marginTop: "20px" }}
-            >
-              5 Days Forecast
-            </p>
+            
             {fiveDayForecast && (
               <FiveDayForecast forecastData={fiveDayForecast} />
             )}
@@ -179,15 +215,17 @@ function App() {
             style={{
               display: "flex",
               flexDirection: "column",
-              flex: "0.5",
-              gap: "20px",
+              
+              gap: "15px",
             }}
           >
             <TodayHighlights
               weatherData={weatherData}
               airQualityData={airQualityData}
             />
-            <HourlyWeather city={city} /> {/* Add HourlyWeather component */}
+            <HourlyWeather city={city} />
+            {/* Pass hourly weather data to the WeatherChart */}
+            
           </div>
         </div>
       )}

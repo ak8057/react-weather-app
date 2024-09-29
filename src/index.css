@@ -1,0 +1,7 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.8),  #00246B); /* Gradient with opacity */
+  color: #ffffff;
+ 
+  overflow: hidden; 
+}

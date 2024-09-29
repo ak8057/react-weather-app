@@ -1,0 +1,71 @@
+.glass-card {
+  background-color: rgba(1, 44, 87, 0.5); /* Semi-transparent background for glass effect */
+  color: white;
+  width: 840px;
+  border-radius: 1rem; /* Slightly larger border radius for a softer look */
+  padding: 30px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+
+
+
+/* Hover effect to scale up and increase shadow */
+.glass-card:hover {
+  transform: scale(1.02); /* Scale up on hover */
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+/* Optional: Add a little animation for entry */
+.glass-card {
+  animation: fadeIn 0.5s ease; /* Fade-in animation on load */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Start slightly lower */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* End in place */
+  }
+}
+
+
+/* App.css */
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  justify-content: space-between; /* Space between the columns */
+  padding: 10px;
+}
+
+.main-card {
+  flex: 1 1 25%; /* Takes up 25% of the width on larger screens */
+  max-width: 326px; /* Max width to maintain card size */
+  margin-right: 10px; /* Margin between cards */
+}
+
+.highlights {
+  flex: 1 1 70%; /* Takes up 70% of the width */
+  display: flex;
+  flex-direction: column; /* Aligns items in a column */
+  gap: 15px; /* Space between highlights */
+}
+
+@media (max-width: 768px) {
+  .main-card {
+    flex: 1 1 100%; /* Takes full width on smaller screens */
+    margin-right: 0; /* Remove margin */
+  }
+}
+  .highlights {
+    flex: 1 
+  }
+
+
+

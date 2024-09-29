@@ -3,9 +3,10 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import HighlightBox from "../../src/components/Highlightbox";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import CompressIcon from "@mui/icons-material/Compress";
-import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import CompressIcon from '@mui/icons-material/Compress';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import "../App.css"
 
 const TodayHighlights = ({ weatherData, airQualityData }) => {
   const { main, wind, visibility, sys } = weatherData;
@@ -39,7 +40,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
     {
       title: "Visibility",
       value: `${visibility / 1000} km`,
-      Icon: VisibilityIcon,
+      Icon:  VisibilityIcon,
     },
     {
       title: "Feels Like",
@@ -51,29 +52,30 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
   return (
     <div
       style={{
-        backgroundColor: "#4B5563",
+        backgroundColor: "#00203FFF",
         color: "white",
-        width: "840px",
+        width: "1031px",
         borderRadius: "0.5rem",
         padding: "30px",
       }}
     >
-      <div style={{ fontSize: "20px" }}>Today's Highlights</div>
+     
       <div
         style={{
           display: "flex",
-          gap: "18px",
+          gap: "13px",
         }}
       >
         <div
           style={{
-            backgroundColor: "#374151",
+            backgroundColor: "#rgba(1, 44, 87, 0.5)",
             color: "white",
             padding: "1rem",
             borderRadius: "0.5rem",
-            marginTop: "11px",
-            width: "370px",
+            // marginTop: "11px",
+            width: "475px",
           }}
+          className="glass-card"
         >
           <div>
             <div
@@ -90,12 +92,13 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
                   fontSize: "16px",
                   fontWeight: "700",
                   backgroundColor: "green",
-                  height: "20px",
-                  width: "45px",
+                  height: "25px",
+                  width: "100px",
                   borderRadius: "6px",
                   alignItems: "center",
                   display: "flex",
                   justifyContent: "center",
+                  
                 }}
               >
                 {renderAirQualityDescription(airQualityIndex)}
@@ -108,7 +111,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
                   marginTop: "1rem",
                   display: "grid",
                   gridTemplateColumns: "repeat(4, 1fr)",
-                  gap: "10px",
+                  gap: "25px",
                 }}
               >
                 <div>
@@ -134,13 +137,14 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
 
         <div
           style={{
-            backgroundColor: "#374151",
+            backgroundColor: "#rgba(1, 44, 87, 0.5)",
             color: "white",
             padding: "1rem",
             borderRadius: "0.5rem",
-            marginTop: "11px",
-            width: "385px",
+            // marginTop: "11px",
+            width: "475px",
           }}
+          className="glass-card"
         >
           <div style={{ fontSize: "22px" }}>
             <p>Sunrise And Sunset</p>
@@ -149,6 +153,7 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
                 display: "flex",
                 justifyContent: "space-between",
                 padding: "10px",
+                gap: "5rem",
               }}
             >
               <div>
@@ -173,8 +178,9 @@ const TodayHighlights = ({ weatherData, airQualityData }) => {
       <div
         style={{
           display: "flex",
-          gap: "4px",
+          gap: "10px",
           marginTop: "10px",
+      
         }}
       >
         {highlights.map((highlight, index) => (

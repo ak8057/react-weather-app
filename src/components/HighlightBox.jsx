@@ -6,13 +6,15 @@ const HighlightBox = ({ title, value, Icon }) => {
   return (
     <div
       style={{
-        backgroundColor: "#374151",
+        backgroundColor: "#rgba(1, 44, 87, 0.5)",
         color: "white",
         padding: "1rem",
         borderRadius: "0.5rem",
-        width: "180px",
+        width: "220px",
         height: "80px",
+       
       }}
+       className="glass-card" 
     >
       <div>
         <div style={{ fontSize: "18px" }}>{title}</div>

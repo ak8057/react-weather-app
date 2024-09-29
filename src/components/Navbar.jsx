@@ -74,8 +74,22 @@ const Navbar = ({ onSearch, onCurrentLocation }) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+      <AppBar
+        style={{
+          backgroundColor: "#00203FFF",
+          color: "white",
+          borderRadius: "1rem",
+        }}
+        position="static"
+      >
+        <Toolbar
+          style={{
+            backgroundColor: "#00203FFF",
+            color: "white",
+            borderRadius: "1rem",
+          }}
+          sx={{ justifyContent: "space-between" }}
+        >
           {/* Icon Button (Left) */}
           <IconButton
             size="large"
@@ -118,6 +132,7 @@ const Navbar = ({ onSearch, onCurrentLocation }) => {
           <div>
             <Button
               variant="contained"
+              onClick={onCurrentLocation}
               style={{
                 // marginTop: "1rem",
                 fontSize: "14px",
@@ -129,7 +144,7 @@ const Navbar = ({ onSearch, onCurrentLocation }) => {
                 color: "white",
                 gap: "5px",
                 padding: "0.5rem",
-                borderRadius: "6px",
+                borderRadius: "6px",  
                 alignItems: "center",
                 display: "flex",
                 justifyContent: "center",
@@ -141,7 +156,6 @@ const Navbar = ({ onSearch, onCurrentLocation }) => {
                 cursor: "pointer", // Cursor change on hover
                 top: "15%",
               }}
-              onClick={onCurrentLocation}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "#005494"; // Darker shade on hover
                 e.currentTarget.style.transform =
@@ -173,10 +187,24 @@ const Navbar = ({ onSearch, onCurrentLocation }) => {
             variant="contained"
             onClick={handleSearchClick}
             style={{
-              borderRadius: "6px",
+              // marginTop: "1rem",
+              fontSize: "14px",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: "700",
               backgroundColor: "#0066b2",
-              margin: "10px",
+              height: "40px",
+              width: "100px",
+              color: "white",
+             
+              padding: "5px",
+              borderRadius: "0.5rem",
+           
+              transition: "all 0.3s ease", // Smooth transition for hover effect
+              cursor: "pointer", // Cursor change on hover
+              top: "15%",
+              left:"0.7rem",
             }}
+           
           >
             Search
           </Button>

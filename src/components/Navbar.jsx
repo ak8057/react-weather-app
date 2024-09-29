@@ -30,6 +30,7 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
+
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -39,6 +40,8 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
+
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -56,6 +59,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+
 const Navbar = ({onSearch}) => {
   const theme = useTheme();
 
@@ -66,6 +71,8 @@ const Navbar = ({onSearch}) => {
        onSearch(searchCity);
      }
    };
+
+   
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

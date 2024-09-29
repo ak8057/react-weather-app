@@ -1,8 +1,10 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
+import MainWeatherCard from "./components/MainWeatherCard";
 import "./App.css";
+import TodayHighlights from "./components/TodayHighlights";
 
-// import axios from "axios"; 
+import axios from "axios";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -27,7 +29,6 @@ function App() {
         console.error("Error fetching the air quality data:", error)
       );
   };
-
 
   const fetchWeatherData = (city) => {
     const API_KEY = "075ef05b5d0d611285f007d3ad9b62f6"; // Replace with your OpenWeatherMap API key
@@ -61,8 +62,36 @@ function App() {
 
   return (
     <>
-      <Navbar onSearch={handleSearch}/>
- 
+      <Navbar onSearch={handleSearch} />
+      <MainWeatherCard/>
+      {weatherData && airQualityData && (
+        <div style={{ display: "flex", padding: "30px", gap: "20px" }}>
+          <div style={{ flex: "1", marginRight: "10px" }}>
+            <MainWeatherCard weatherData={weatherData} />
+            <p
+              style={{ fontWeight: "700", fontSize: "20px", marginTop: "20px" }}
+            >
+              5 Days Forecast
+            </p>
+            {fiveDayForecast && (
+              <FiveDayForecast forecastData={fiveDayForecast} />
+            )}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: "0.5",
+              gap: "20px",
+            }}
+          >
+            <TodayHighlights
+              weatherData={weatherData}
+              airQualityData={airQualityData}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

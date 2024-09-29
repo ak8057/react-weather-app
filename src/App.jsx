@@ -7,6 +7,8 @@ import FiveDayForecast from "./components/FiveDayForecast";
 import HourlyWeather from "./components/HourlyWeather";
 import axios from "axios";
 
+
+
 import {
   Dialog,
   DialogActions,
@@ -31,7 +33,7 @@ function App() {
   }, [city]);
 
   const fetchAirQualityData = (lat, lon) => {
-    const API_KEY = "075ef05b5d0d611285f007d3ad9b62f6"; // Replace with your OpenWeatherMap API key
+    const API_KEY = import.meta.env.VITE_API_KEY;// Replace with your OpenWeatherMap API key
     axios
       .get(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
@@ -45,7 +47,7 @@ function App() {
   };
 
   const fetchWeatherData = (city) => {
-    const API_KEY = "075ef05b5d0d611285f007d3ad9b62f6"; // Replace with your OpenWeatherMap API key
+    const API_KEY = import.meta.env.VITE_API_KEY; // Replace with your OpenWeatherMap API key
     setErrorMessage(""); // Clear any previous error
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
@@ -79,7 +81,7 @@ function App() {
   };
 
   const fetchWeatherByCoords = (lat, lon) => {
-    const API_KEY = "075ef05b5d0d611285f007d3ad9b62f6";
+    const API_KEY = import.meta.env.VITE_API_KEY;
     setErrorMessage(""); // Clear previous error
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`

@@ -22,6 +22,13 @@ A modern weather application built using React, Axios, and the OpenWeatherMap AP
 - Sunrise and sunset times
 - Interactive UI with Material UI components
 
+  ![Screenshot 2024-09-29 165525](https://github.com/user-attachments/assets/5c5fece6-d16c-402b-88d5-03642b44852e)
+
+  
+  ![Screenshot 2024-09-29 165622](https://github.com/user-attachments/assets/b92de3b1-7092-446c-8516-17c49ccd641a)
+
+
+
 
 ## Technologies Used
 

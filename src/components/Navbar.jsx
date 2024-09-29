@@ -61,18 +61,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-const Navbar = ({onSearch}) => {
+const Navbar = ({ onSearch, onCurrentLocation }) => {
   const theme = useTheme();
 
-   const [searchCity, setSearchCity] = useState("");
+  const [searchCity, setSearchCity] = useState("");
 
-   const handleSearchClick = () => {
-     if (searchCity.trim()) {
-       onSearch(searchCity);
-     }
-   };
+  const handleSearchClick = () => {
+    if (searchCity.trim()) {
+      onSearch(searchCity);
+    }
+  };
 
-   
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -116,46 +115,46 @@ const Navbar = ({onSearch}) => {
           </Typography>
 
           {/* Current Location Button (Center) */}
-          <div
-            style={{
-              // marginTop: "1rem",
-              fontSize: "16px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: "700",
-              backgroundColor: "#0066b2",
-              height: "35px",
-              width: "150px",
-              color: "white",
-              gap: "5px",
-              padding: "0.5rem",
-              borderRadius: "6px",
-              alignItems: "center",
-              display: "flex",
-              justifyContent: "center",
-              position: "absolute", // Positioning to keep it centered
-              left: "50%", // Center horizontally
-              transform: "translateX(-50%)", // Correct centering shift
-              transform: "translateX(-50%)", // Correct centering shift
-              transition: "all 0.3s ease", // Smooth transition for hover effect
-              cursor: "pointer", // Cursor change on hover
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#005494"; // Darker shade on hover
-              e.currentTarget.style.transform = "translateX(-50%) scale(1.05)"; // Slight scale on hover
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#0066b2"; // Original color when hover ends
-              e.currentTarget.style.transform = "translateX(-50%) scale(1)"; // Reset scale
-            }}
-          >
-            <GpsFixedIcon />
-            <p
+          <div>
+            <Button
+              variant="contained"
               style={{
+                // marginTop: "1rem",
                 fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: "700",
+                backgroundColor: "#0066b2",
+                height: "50px",
+                width: "200px",
+                color: "white",
+                gap: "5px",
+                padding: "0.5rem",
+                borderRadius: "6px",
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute", // Positioning to keep it centered
+                left: "50%", // Center horizontally
+                transform: "translateX(-50%)", // Correct centering shift
+                transform: "translateX(-50%)", // Correct centering shift
+                transition: "all 0.3s ease", // Smooth transition for hover effect
+                cursor: "pointer", // Cursor change on hover
+                top: "15%",
+              }}
+              onClick={onCurrentLocation}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#005494"; // Darker shade on hover
+                e.currentTarget.style.transform =
+                  "translateX(-50%) scale(1.05)"; // Slight scale on hover
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#0066b2"; // Original color when hover ends
+                e.currentTarget.style.transform = "translateX(-50%) scale(1)"; // Reset scale
               }}
             >
+              <GpsFixedIcon />
               Current Location
-            </p>
+            </Button>
           </div>
 
           {/* Search Bar (Right) */}

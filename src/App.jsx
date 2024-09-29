@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import MainWeatherCard from "./components/MainWeatherCard";
 import "./App.css";
 import TodayHighlights from "./components/TodayHighlights";
-
+import FiveDayForecast from "./components/FiveDayForecast";
 import axios from "axios";
+import HourlyWeather from "./components/HourlyWeather";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -56,14 +57,61 @@ function App() {
       );
   };
 
+  // New function to fetch weather data using coordinates
+  const fetchWeatherByCoords = (lat, lon) => {
+    const API_KEY = "075ef05b5d0d611285f007d3ad9b62f6";
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setWeatherData(data);
+        fetchAirQualityData(lat, lon);
+        axios
+          .get(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+          )
+          .then((response) => {
+            setFiveDayForecast(response.data);
+          })
+          .catch((error) =>
+            console.error("Error fetching the 5-day forecast data:", error)
+          );
+      })
+      .catch((error) =>
+        console.error("Error fetching the weather data:", error)
+      );
+  };
+
   const handleSearch = (searchedCity) => {
     setCity(searchedCity);
   };
 
+  const handleCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeatherByCoords(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error fetching the current location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+
+
   return (
     <>
-      <Navbar onSearch={handleSearch} />
-      <MainWeatherCard/>
+      <Navbar
+        onSearch={handleSearch}
+        onCurrentLocation={handleCurrentLocation}
+      />
+
       {weatherData && airQualityData && (
         <div style={{ display: "flex", padding: "30px", gap: "20px" }}>
           <div style={{ flex: "1", marginRight: "10px" }}>
@@ -89,6 +137,7 @@ function App() {
               weatherData={weatherData}
               airQualityData={airQualityData}
             />
+            <HourlyWeather city={city} /> {/* Add HourlyWeather component */}
           </div>
         </div>
       )}

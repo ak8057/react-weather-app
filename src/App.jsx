@@ -16,16 +16,16 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
-} from "@mui/material"; // Material UI Dialog
+} from "@mui/material"; 
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState("London"); // Default city is set to London
+  const [city, setCity] = useState("London"); 
   const [airQualityData, setAirQualityData] = useState(null);
   const [fiveDayForecast, setFiveDayForecast] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(""); // Error message state
-  const [openErrorPopup, setOpenErrorPopup] = useState(false); // State to control error popup visibility
+  const [errorMessage, setErrorMessage] = useState("");
+  const [openErrorPopup, setOpenErrorPopup] = useState(false); 
   const [hourlyData, setHourlyData] = useState([]);
 
   useEffect(() => {
@@ -33,13 +33,13 @@ function App() {
   }, [city]);
 
   const fetchAirQualityData = (lat, lon) => {
-    const API_KEY = import.meta.env.VITE_API_KEY;// Replace with your OpenWeatherMap API key
+    const API_KEY = import.meta.env.VITE_API_KEY;
     axios
       .get(
         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
       )
       .then((response) => {
-        setAirQualityData(response.data.list[0]); // Set the first item in the list as air quality data
+        setAirQualityData(response.data.list[0]); 
       })
       .catch((error) =>
         console.error("Error fetching the air quality data:", error)
@@ -47,8 +47,8 @@ function App() {
   };
 
   const fetchWeatherData = (city) => {
-    const API_KEY = import.meta.env.VITE_API_KEY; // Replace with your OpenWeatherMap API key
-    setErrorMessage(""); // Clear any previous error
+    const API_KEY = import.meta.env.VITE_API_KEY; 
+    setErrorMessage(""); 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
     )
@@ -74,15 +74,15 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching the weather data:", error);
-        setErrorMessage(error.message); // Set error message
-        setOpenErrorPopup(true); // Show error popup
+        setErrorMessage(error.message);
+        setOpenErrorPopup(true); 
       });
      
   };
 
   const fetchWeatherByCoords = (lat, lon) => {
     const API_KEY = import.meta.env.VITE_API_KEY;
-    setErrorMessage(""); // Clear previous error
+    setErrorMessage(""); 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
     )
@@ -108,14 +108,14 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching the weather data:", error);
-        setErrorMessage(error.message); // Set error message
-        setOpenErrorPopup(true); // Show error popup
+        setErrorMessage(error.message); 
+        setOpenErrorPopup(true); 
       });
   };
 
   const handleSearch = (searchedCity) => {
     setCity(searchedCity);
-    setErrorMessage(""); // Clear error when a new city is searched
+    setErrorMessage(""); 
   };
 
   const handleCurrentLocation = () => {
@@ -128,17 +128,17 @@ function App() {
         (error) => {
           console.error("Error fetching the current location:", error);
           setErrorMessage("Error fetching the current location.");
-          setOpenErrorPopup(true); // Show error popup
+          setOpenErrorPopup(true); 
         }
       );
     } else {
       setErrorMessage("Geolocation is not supported by this browser.");
-      setOpenErrorPopup(true); // Show error popup
+      setOpenErrorPopup(true);
     }
   };
 
   const handleClosePopup = () => {
-    setOpenErrorPopup(false); // Close the error popup
+    setOpenErrorPopup(false); 
   };
 
   return (
@@ -156,10 +156,10 @@ function App() {
         aria-describedby="error-dialog-description"
         PaperProps={{
           style: {
-            backgroundColor: "#fff1f0", // Light red background to indicate error
-            borderRadius: "12px", // Rounded corners
-            padding: "20px", // Padding for content
-            minWidth: "500px", // Maximum width of the dialog
+            backgroundColor: "#fff1f0", 
+            borderRadius: "12px",
+            padding: "20px", 
+            minWidth: "500px", 
           },
         }}
       >
